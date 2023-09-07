@@ -189,27 +189,27 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt    
 
-  # configure-infrastructure:
-  #   docker:
-  #     - image: python:3.7-alpine3.11
-  #   steps:
-  #     - checkout
-  #     - add_ssh_keys:
-  #         fingerprints: 
-  #           - "9a:4f:91:43:23:dd:28:e5:55:a1:4b:ae:fa:c1:db:92"
-  #     - attach_workspace:
-  #         at: ~/
-  #     - run:
-  #         name: Install dependencies
-  #         command: |
-  #           apk add --update ansible
-  #     - run:
-  #         name: Configure server
-  #         command: |
-  #           cd .circleci/ansible
-  #           cat inventory.txt
-  #           ansible-playbook -i inventory.txt configure-server.yml
-  #     # - destroy-environment      
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: 
+            - "9e:90:83:18:f3:7c:36:08:65:b2:2c:d5:d2:88:12:bf"
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+      - run:
+          name: Configure server
+          command: |
+            cd .circleci/ansible
+            cat inventory.txt
+            ansible-playbook -i inventory.txt configure-server.yml
+      # - destroy-environment      
 
   # run-migrations:
   #     docker:
@@ -242,7 +242,7 @@ jobs:
   #     - checkout
   #     - add_ssh_keys:
   #         fingerprints: 
-  #           - "9a:4f:91:43:23:dd:28:e5:55:a1:4b:ae:fa:c1:db:92"
+  #           - "9e:90:83:18:f3:7c:36:08:65:b2:2c:d5:d2:88:12:bf"
   #     - attach_workspace:
   #         at: ~/
   #     - run:
@@ -274,7 +274,7 @@ jobs:
   #       - checkout
   #       - add_ssh_keys:
   #           fingerprints: 
-  #             - "9a:4f:91:43:23:dd:28:e5:55:a1:4b:ae:fa:c1:db:92"
+  #             - "9e:90:83:18:f3:7c:36:08:65:b2:2c:d5:d2:88:12:bf"
   #       - attach_workspace:
   #           at: ~/
   #       - restore_cache:
@@ -432,8 +432,8 @@ workflows:
           filters:
             branches:
               only: [master]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       # - run-migrations:
       #     requires: [configure-infrastructure]
       # - deploy-frontend:

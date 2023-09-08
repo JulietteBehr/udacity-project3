@@ -357,7 +357,7 @@ jobs:
             apk add --update tar gzip ansible nodejs npm curl openssh-client
             pip install awscli
       - run:
-          name: Update Cloudformation
+          name: Update Cloudfront
           command: |
             export OldWorkflowID=$(aws cloudformation \
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \

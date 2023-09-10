@@ -219,7 +219,6 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-build]
-      - ensure-backend-env-exists
       - run:
           name: Install aws-cli
           command: |
@@ -241,7 +240,7 @@ jobs:
               then
                 echo "insecure" >> ~/.curlrc
                 curl https://kvdb.io/TepmZyT1NRCw6HU1j1svyt/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
-              fi  
+              fi 
 
   deploy-frontend:
     docker:

@@ -34,6 +34,7 @@ commands:
           when: on_fail
           command: |
             SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.workflow_id >>)
+            export SUCCESS=1
             if (( $SUCCESS == 1 ));
             then
               cd ~/project/backend

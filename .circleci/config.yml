@@ -38,15 +38,8 @@ commands:
             then
               cd ~/project/backend
               npm install
-              npm run migrations:revert
-              exit 1
+              npm run migration:revert
             fi
-            # if [[ $SUCCESS == 1 ]];
-            # then
-            #   cd ~/project/backend
-            #   npm install
-            #   npm run migration:revert
-            # fi
 
   install_awscli:
       description: Install AWS CLI v2

@@ -34,13 +34,17 @@ commands:
           when: on_fail
           command: |
             SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.workflow_id >>)
-            export SUCCESS=1
             if [[ $SUCCESS == 1 ]];
             then
-              cd ~/project/backend
-              npm install
-              npm run migration:revert
+              npm run migrations:revert
+              exit 1
             fi
+            # if [[ $SUCCESS == 1 ]];
+            # then
+            #   cd ~/project/backend
+            #   npm install
+            #   npm run migration:revert
+            # fi
 
   install_awscli:
       description: Install AWS CLI v2

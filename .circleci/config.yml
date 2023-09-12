@@ -35,7 +35,8 @@ commands:
           command: |
             cd ~/project/backend
             if [[ -f "~/project/.circleci/db_migration_success" ]]; then
-              npm i
+              cd ~/project/backend
+              npm install
               npm run migration:revert
             fi
             # SUCCESS=$(curl -k https://kvdb.io/GjRuSz7etqxEz49MvTpbWF/migration_${CIRCLE_WORKFLOW_ID:0:7})

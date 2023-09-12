@@ -34,7 +34,7 @@ commands:
           when: on_fail
           command: |
             cd ~/project/backend
-            if [[ -f "~/project/.circleci/outputs/db_migration_success" ]]; then
+            if [[ -f "~/project/.circleci/db_migration_success" ]]; then
               npm i
               npm run migration:revert
             fi
@@ -244,7 +244,7 @@ jobs:
         - persist_to_workspace:
             root: ~/
             paths:
-              - project/.circleci/outputs/
+              - project/.circleci/
         - destroy-environment:
             workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
         # - run:

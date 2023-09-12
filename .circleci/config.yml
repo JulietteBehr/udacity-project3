@@ -35,12 +35,16 @@ commands:
           command: |
             SUCCESS=$(curl -k https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7})
             echo "$SUCCESS"
-            if [[ "${SUCCESS}" == "1" ]];
-            then
-              # cd ~/project/backend
-              # npm install
+            if [ $SUCCESS -eq "1" ]
+            then 
               npm run migration:revert
             fi
+            # if [[ "${SUCCESS}" == "1" ]];
+            # then
+            #   # cd ~/project/backend
+            #   # npm install
+            #   npm run migration:revert
+            # fi
 
   install_awscli:
       description: Install AWS CLI v2

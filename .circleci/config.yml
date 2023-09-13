@@ -310,20 +310,16 @@ jobs:
   
   smoke-test:
     docker:
-      # - image: python:3.7-alpine3.11
-        - image: circleci/node:13.8.0
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - install_awscli
       - attach_workspace:
           at: ~/
       - run:
           name: Install dependencies
           command: |
-            # apk add --update tar gzip ansible nodejs npm curl openssh-client
-            # pip install awscli
-              sudo apt-get update
-              sudo apt-get install -y tar gzip ansible nodejs npm curl openssh-client
+            apk add --update tar gzip ansible nodejs npm curl openssh-client
+            pip install awscli
       - run:
           name: Check app status
           command: |

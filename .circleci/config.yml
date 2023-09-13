@@ -33,7 +33,7 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS=$(curl -k https://kvdb.io/GjRuSz7etqxEz49MvTpbWF/migration_$\{CIRCLE_WORKFLOW_ID:0:7\})
+            SUCCESS=$(curl -k https://kvdb.io/GjRuSz7etqxEz49MvTpbWF/migration_${CIRCLE_WORKFLOW_ID:0:7})
             echo "$SUCCESS"
             if [[ "${SUCCESS}" == "1" ]];
             then
@@ -236,7 +236,7 @@ jobs:
               then
                 echo "insecure" >> ~/.curlrc
                 echo "insecure"
-                curl https://kvdb.io/GjRuSz7etqxEz49MvTpbWF/migration_$\{CIRCLE_WORKFLOW_ID:0:7\}  -d '1'
+                curl https://kvdb.io/GjRuSz7etqxEz49MvTpbWF/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
                 echo "https://kvdb.io/GjRuSz7etqxEz49MvTpbWF/migration_${CIRCLE_WORKFLOW_ID:0:7}"
               fi
         - destroy-environment

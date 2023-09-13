@@ -314,13 +314,16 @@ jobs:
         - image: circleci/node:13.8.0
     steps:
       - checkout
+      - install_awscli
       - attach_workspace:
           at: ~/
       - run:
           name: Install dependencies
           command: |
-            apk add --update tar gzip ansible nodejs npm curl openssh-client
-            pip install awscli
+            # apk add --update tar gzip ansible nodejs npm curl openssh-client
+            # pip install awscli
+              sudo apt-get update
+              sudo apt-get install -y tar gzip ansible nodejs npm curl openssh-client
       - run:
           name: Check app status
           command: |

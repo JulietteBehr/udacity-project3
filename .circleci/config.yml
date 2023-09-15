@@ -38,7 +38,6 @@ commands:
             if [[ "${SUCCESS}" == "1" ]];
             then
               cd ~/project/backend
-              ls -la
               npm install
               npm run migration:revert
             fi
